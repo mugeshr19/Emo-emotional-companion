@@ -3,36 +3,43 @@ import generateResponse from "../services/response-service.js";
 import detectRisk from "../services/risk-service.js";
 import recommendResources from "../services/resource-service.js";
 import getPetMood from "../utils/mood-util.js";
+import Chat from "../models/Chat.js";
 
 export const chatHandler = async (req, res) => {
   try {
     const { message } = req.body;
-    if (!message)
-      return res.status(400).json({ error: "Message required" });
+    const userId = req.user?.userId;
+    
+    if (!message) return res.status(400).json({ error: "Message required" });
+    if (!userId) return res.status(401).json({ error: "Authentication required" });
 
-    // 2️⃣ Analyze sentiment and mode
-    const analysis = await analyzeSentiment(message); // returns {emotion, sentiment, risk_level, mode, reason}
+    // Get last 10 messages for context
+    let chat = await Chat.findOne({ userId });
+    const chatHistory = chat ? chat.messages.slice(-10) : [];
+    
+    console.log('Chat history:', chatHistory); // Debug log
 
-    // 3️⃣ Detect risk level
+    // Analyze sentiment
+    const analysis = await analyzeSentiment(message);
     const risk = detectRisk(analysis.risk_level);
 
-    // 4️⃣ Generate AI reply
-    const reply = await generateResponse({ message, analysis, risk });
+    // Generate AI reply with last 10 messages context
+    const reply = await generateResponse({ message, analysis, risk, chatHistory });
 
-    // 5️⃣ Recommend resources
+    // Save conversation
+    if (!chat) {
+      chat = new Chat({ userId, messages: [] });
+    }
+    chat.messages.push(
+      { role: "user", content: message },
+      { role: "assistant", content: reply }
+    );
+    await chat.save();
+
     const resources = recommendResources(risk);
-
-    // 6️⃣ Get pet mood based on AI-detected emotion
     const petMood = getPetMood(analysis.emotion);
 
-    // 8️⃣ Send response to frontend
-    res.json({
-      reply,
-      emotion: analysis.emotion,
-      risk,
-      petMood,
-      resources
-    });
+    res.json({ reply, emotion: analysis.emotion, risk, petMood, resources });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "AI processing failed" });

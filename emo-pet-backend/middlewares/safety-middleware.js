@@ -23,8 +23,16 @@ export default function safetyCheck(req, res, next) {
       petMood: "soothing",
       resources: [
         {
-          name: "Kiran Mental Health Helpline (India)",
-          contact: "1800-599-0019",
+          name: "National Suicide Prevention Lifeline",
+          contact: "988",
+        },
+        {
+          name: "Crisis Text Line",
+          contact: "Text HOME to 741741",
+        },
+        {
+          name: "International Association for Suicide Prevention",
+          contact: "https://www.iasp.info/resources/Crisis_Centres/",
         },
       ],
     });
