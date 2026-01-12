@@ -3,8 +3,8 @@ import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognitio
 import Lottie from "lottie-react";
 import welcomeAnimation from "../animations/Artboard 1.json";
 import neutralAnimation from "../animations/Neutral-emotion.json";
-import shootAnimation from "../animations/shoot.json";
-import handsUpAnimation from "../animations/hands-up.json";
+import shootAnimation from "../animations/Shoot.json";
+import handsUpAnimation from "../animations/Hands-up.json";
 import dizzyAnimation from "../animations/Dizzy.json";
 import playfulAnimation from "../animations/Playful.json";
 import listeningAnimation from "../animations/Listening.json";
