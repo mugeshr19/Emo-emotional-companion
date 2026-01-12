@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Speechrecognition from "./components/SpeechRecognition.jsx"
+import SpeechRecognition from "./components/SpeechRecognition.jsx"
 import Auth from "./components/Auth.jsx"
 import './scrollbar.css'
 
@@ -58,7 +58,7 @@ function App() {
   return (
     <>
       {isAuthenticated ? (
-        <Speechrecognition user={user} onLogout={handleLogout} />
+        <SpeechRecognition user={user} onLogout={handleLogout} />
       ) : (
         <Auth onAuthSuccess={handleAuthSuccess} />
       )}
