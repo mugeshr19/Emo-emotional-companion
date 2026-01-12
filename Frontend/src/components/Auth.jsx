@@ -59,27 +59,29 @@ const Auth = ({ onAuthSuccess }) => {
             height: "100vh",
             width: "100vw",
             display: 'flex',
-            flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
             fontFamily: "Roboto, sans-serif",
             background: "linear-gradient(135deg, #1E1E1E 0%, #2D2D2D 50%, #1E1E1E 100%)",
-            padding: "clamp(1rem, 4vw, 2rem)"
+            padding: "1rem",
+            boxSizing: "border-box"
         }}>
             <div style={{
                 backgroundColor: "#2D2D2D",
-                padding: "clamp(1.5rem, 5vw, 2.5rem)",
-                borderRadius: "clamp(0.75rem, 3vw, 1.25rem)",
+                padding: "2rem",
+                borderRadius: "1rem",
                 border: "1px solid #4CAF50",
-                width: "min(25rem, 90vw)",
-                maxWidth: "100%",
-                boxShadow: "0 4px 15px rgba(76, 175, 80, 0.2)"
+                width: "100%",
+                maxWidth: "400px",
+                boxShadow: "0 4px 15px rgba(76, 175, 80, 0.2)",
+                boxSizing: "border-box"
             }}>
                 <h2 style={{
                     color: "#FFFFFF",
                     textAlign: "center",
-                    marginBottom: "clamp(1rem, 4vw, 1.875rem)",
-                    fontSize: "clamp(1.25rem, 5vw, 1.75rem)"
+                    marginBottom: "1.5rem",
+                    fontSize: "1.5rem",
+                    margin: "0 0 1.5rem 0"
                 }}>
                     {isLogin ? 'Welcome Back' : 'Create an Account'}
                 </h2>
@@ -108,13 +110,13 @@ const Auth = ({ onAuthSuccess }) => {
                             required
                             style={{
                                 width: "100%",
-                                padding: "clamp(0.75rem, 3vw, 0.9375rem)",
-                                marginBottom: "clamp(0.75rem, 3vw, 0.9375rem)",
-                                borderRadius: "clamp(0.5rem, 2vw, 0.625rem)",
+                                padding: "0.75rem",
+                                marginBottom: "1rem",
+                                borderRadius: "0.5rem",
                                 border: "1px solid #4CAF50",
                                 backgroundColor: "#1E1E1E",
                                 color: "#FFFFFF",
-                                fontSize: "clamp(0.875rem, 3vw, 1rem)",
+                                fontSize: "1rem",
                                 outline: "none",
                                 boxSizing: "border-box"
                             }}
@@ -130,13 +132,13 @@ const Auth = ({ onAuthSuccess }) => {
                         required
                         style={{
                             width: "100%",
-                            padding: "clamp(0.75rem, 3vw, 0.9375rem)",
-                            marginBottom: "clamp(0.75rem, 3vw, 0.9375rem)",
-                            borderRadius: "clamp(0.5rem, 2vw, 0.625rem)",
+                            padding: "0.75rem",
+                            marginBottom: "1rem",
+                            borderRadius: "0.5rem",
                             border: "1px solid #4CAF50",
                             backgroundColor: "#1E1E1E",
                             color: "#FFFFFF",
-                            fontSize: "clamp(0.875rem, 3vw, 1rem)",
+                            fontSize: "1rem",
                             outline: "none",
                             boxSizing: "border-box"
                         }}
@@ -151,13 +153,13 @@ const Auth = ({ onAuthSuccess }) => {
                         required
                         style={{
                             width: "100%",
-                            padding: "clamp(0.75rem, 3vw, 0.9375rem)",
-                            marginBottom: "clamp(1rem, 4vw, 1.25rem)",
-                            borderRadius: "clamp(0.5rem, 2vw, 0.625rem)",
+                            padding: "0.75rem",
+                            marginBottom: "1.5rem",
+                            borderRadius: "0.5rem",
                             border: "1px solid #4CAF50",
                             backgroundColor: "#1E1E1E",
                             color: "#FFFFFF",
-                            fontSize: "clamp(0.875rem, 3vw, 1rem)",
+                            fontSize: "1rem",
                             outline: "none",
                             boxSizing: "border-box"
                         }}
@@ -168,12 +170,12 @@ const Auth = ({ onAuthSuccess }) => {
                         disabled={loading}
                         style={{
                             width: "100%",
-                            padding: "clamp(0.75rem, 3vw, 0.9375rem)",
+                            padding: "0.75rem",
                             backgroundColor: "#4CAF50",
                             color: "#FFFFFF",
                             border: "none",
-                            borderRadius: "clamp(0.5rem, 2vw, 0.625rem)",
-                            fontSize: "clamp(1rem, 3vw, 1.125rem)",
+                            borderRadius: "0.5rem",
+                            fontSize: "1rem",
                             fontWeight: "bold",
                             cursor: loading ? "not-allowed" : "pointer",
                             opacity: loading ? 0.7 : 1,
@@ -187,8 +189,8 @@ const Auth = ({ onAuthSuccess }) => {
                 <p style={{
                     color: "#FFFFFF",
                     textAlign: "center",
-                    marginTop: "clamp(1rem, 4vw, 1.25rem)",
-                    fontSize: "clamp(0.875rem, 3vw, 1rem)"
+                    marginTop: "1.5rem",
+                    fontSize: "0.9rem"
                 }}>
                     {isLogin ? "Don't have an account? " : "Already have an account? "}
                     <span
