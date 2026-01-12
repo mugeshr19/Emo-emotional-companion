@@ -30,7 +30,6 @@ const Auth = ({ onAuthSuccess }) => {
                 : formData;
 
             const apiUrl = process.env.REACT_APP_API_URL || 'https://emo-emotional-companion.onrender.com';
-            console.log('API URL:', apiUrl); // Debug log
             const response = await fetch(`${apiUrl}/api/chat${endpoint}`, {
                 method: 'POST',
                 headers: {

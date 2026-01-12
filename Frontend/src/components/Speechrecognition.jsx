@@ -127,7 +127,6 @@ const SpeechRecognitionComponent = ({ user, onLogout }) => {
                 try {
                 const token = localStorage.getItem('token');
                 const apiUrl = process.env.REACT_APP_API_URL || 'https://emo-emotional-companion.onrender.com';
-                console.log('API URL:', apiUrl); // Debug log
                 const response = await fetch(`${apiUrl}/api/chat`, {
                     method: 'POST',
                     headers: {
@@ -142,28 +141,18 @@ const SpeechRecognitionComponent = ({ user, onLogout }) => {
                 }
                 
                 const data = await response.json();
-                console.log('Backend response:', data); // Debug log
                 const botMessage = { text: data.reply || data.response || 'No response from server', sender: 'bot' };
                 setMessages(prev => [...prev, botMessage]);
                 
-                console.log('Checking animation conditions:');
-                console.log('data.emotion:', data.emotion);
-                console.log('data.petMood:', data.petMood);
-                
                 if (data.emotion === 'playful' || data.petMood === 'playful') {
-                    console.log('Triggering playful animation');
                     setCurrentAnimation(playfulAnimation);
                     setTimeout(() => setCurrentAnimation(null), 3000);
                 } else if (data.emotion === 'happy' || data.petMood === 'loving') {
-                    console.log('Triggering welcome animation for happy/loving');
                     setCurrentAnimation(welcomeAnimation);
                     setTimeout(() => setCurrentAnimation(null), 3000);
                 } else if (data.petMood === 'seeking') {
-                    console.log('Triggering seeking animation - petMood is seeking');
                     setCurrentAnimation(seekingAnimation);
                     setTimeout(() => setCurrentAnimation(null), 3000);
-                } else {
-                    console.log('No animation triggered');
                 }
                 } catch (error) {
                     console.error('Error sending message:', error);
