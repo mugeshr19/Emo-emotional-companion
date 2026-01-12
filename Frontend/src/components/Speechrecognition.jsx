@@ -126,7 +126,9 @@ const SpeechRecognitionComponent = ({ user, onLogout }) => {
             if (!hasSpecialAnimation) {
                 try {
                 const token = localStorage.getItem('token');
-                const response = await fetch(`${process.env.REACT_APP_API_URL}/api/chat`, {
+                const apiUrl = process.env.REACT_APP_API_URL || 'https://emo-emotional-companion.onrender.com';
+                console.log('API URL:', apiUrl); // Debug log
+                const response = await fetch(`${apiUrl}/api/chat`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

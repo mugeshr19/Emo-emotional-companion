@@ -29,7 +29,9 @@ const Auth = ({ onAuthSuccess }) => {
                 ? { email: formData.email, password: formData.password }
                 : formData;
 
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/chat${endpoint}`, {
+            const apiUrl = process.env.REACT_APP_API_URL || 'https://emo-emotional-companion.onrender.com';
+            console.log('API URL:', apiUrl); // Debug log
+            const response = await fetch(`${apiUrl}/api/chat${endpoint}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
