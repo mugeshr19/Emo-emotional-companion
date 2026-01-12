@@ -3,7 +3,7 @@ import { registerUser, loginUser } from "../services/auth-service.js";
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 
-export const signin =async(req,res)=>{
+export const register = async(req,res)=>{
     try{
         const {username,email, password} = req.body;
 
@@ -37,9 +37,18 @@ export const signin =async(req,res)=>{
 
     }
     catch(error){
+        console.error('Registration error:', error);
+        
+        if (error.message === "Email already registered") {
+            return res.status(400).json({
+                success: false,
+                message: "Email already registered",
+            });
+        }
+        
         res.status(500).json({
             success: false,
-            message: error.message,
+            message: "Registration failed. Please try again.",
         });
     }
 }
@@ -70,9 +79,18 @@ export const login=async(req,res)=>{
         });
     }
     catch(error){
-        res.status(401).json({
+        console.error('Login error:', error);
+        
+        if (error.message === "Invalid email or password") {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid email or password",
+            });
+        }
+        
+        res.status(500).json({
             success: false,
-            message: error.message,
+            message: "Login failed. Please try again.",
         });
     }
 }

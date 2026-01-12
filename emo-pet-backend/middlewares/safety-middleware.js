@@ -7,9 +7,9 @@ const dangerousPhrases = [
   "i should die",
   "i don't want to live",
 ];
-// if the message contains these words this will be executed
+// Safety middleware to detect potentially harmful messages
 export default function safetyCheck(req, res, next) {
-  const msg = (req.body.message || "").toLowerCase();
+  const msg = (req.body?.message || "").toLowerCase();
 
   const isDangerous = dangerousPhrases.some((phrase) =>
     msg.includes(phrase)

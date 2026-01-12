@@ -2,6 +2,17 @@ import User from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+const generateToken = (userId) => {
+  if (!process.env.JWT_SECRET) {
+    throw new Error('JWT_SECRET environment variable is required');
+  }
+  return jwt.sign(
+    { userId },
+    process.env.JWT_SECRET,
+    { expiresIn: "7d" }
+  );
+};
+
 export const registerUser = async ({ username, email, password }) => {
   const existingUser = await User.findOne({ email });
   if (existingUser) {
@@ -17,11 +28,7 @@ export const registerUser = async ({ username, email, password }) => {
     lastMood: "neutral",
   });
 
-  const token = jwt.sign(
-    { userId: user._id },
-    process.env.JWT_SECRET,
-    { expiresIn: "7d" }
-  );
+  const token = generateToken(user._id);
 
   return {
     token,
@@ -45,11 +52,7 @@ export const loginUser = async (email, password) => {
     throw new Error("Invalid email or password");
   }
 
-  const token = jwt.sign(
-    { userId: user._id },
-    process.env.JWT_SECRET,
-    { expiresIn: "7d" }
-  );
+  const token = generateToken(user._id);
 
   return {
     token,

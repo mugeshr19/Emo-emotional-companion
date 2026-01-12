@@ -10,16 +10,32 @@ Analyze sentiment and return ONLY JSON:
   "mode": "friendly | humorous | playful | supportive",
   "reason": "short explanation"
 } 
- // the above line is used to send the those line to api , so that ai can classify the message (message is something given by user that is input adhu dhan kila ulla rendu line) base on the condition
+
 Message:
 "${message}"
 `;
 
-    const response = await groq.chat.completions.create({
-        model: "llama-3.1-8b-instant",
-        messages: [{ role: "user", content: prompt }],
-        temperature: 0,
-    });
+    try {
+        const response = await groq.chat.completions.create({
+            model: "llama-3.1-8b-instant",
+            messages: [{ role: "user", content: prompt }],
+            temperature: 0,
+        });
 
-  return JSON.parse(response.choices[0].message.content);
+        if (!response.choices || !response.choices[0] || !response.choices[0].message) {
+            throw new Error('Invalid API response structure');
+        }
+
+        return JSON.parse(response.choices[0].message.content);
+    } catch (error) {
+        console.error('Sentiment analysis error:', error);
+        
+        return {
+            sentiment: "neutral",
+            emotion: "neutral",
+            risk_level: 5,
+            mode: "supportive",
+            reason: "Analysis unavailable"
+        };
+    }
 }
