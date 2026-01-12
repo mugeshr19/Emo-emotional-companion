@@ -63,21 +63,23 @@ const Auth = ({ onAuthSuccess }) => {
             alignItems: 'center',
             justifyContent: 'center',
             fontFamily: "Roboto, sans-serif",
-            background: "linear-gradient(135deg, #1E1E1E 0%, #2D2D2D 50%, #1E1E1E 100%)"
+            background: "linear-gradient(135deg, #1E1E1E 0%, #2D2D2D 50%, #1E1E1E 100%)",
+            padding: "clamp(1rem, 4vw, 2rem)"
         }}>
             <div style={{
                 backgroundColor: "#2D2D2D",
-                padding: "40px",
-                borderRadius: "20px",
+                padding: "clamp(1.5rem, 5vw, 2.5rem)",
+                borderRadius: "clamp(0.75rem, 3vw, 1.25rem)",
                 border: "1px solid #4CAF50",
-                width: "400px",
+                width: "min(25rem, 90vw)",
+                maxWidth: "100%",
                 boxShadow: "0 4px 15px rgba(76, 175, 80, 0.2)"
             }}>
                 <h2 style={{
                     color: "#FFFFFF",
                     textAlign: "center",
-                    marginBottom: "30px",
-                    fontSize: "28px"
+                    marginBottom: "clamp(1rem, 4vw, 1.875rem)",
+                    fontSize: "clamp(1.25rem, 5vw, 1.75rem)"
                 }}>
                     {isLogin ? 'Welcome Back' : 'Create an Account'}
                 </h2>
@@ -105,15 +107,16 @@ const Auth = ({ onAuthSuccess }) => {
                             onChange={handleInputChange}
                             required
                             style={{
-                                width: "90%",
-                                padding: "15px",
-                                marginBottom: "15px",
-                                borderRadius: "10px",
+                                width: "100%",
+                                padding: "clamp(0.75rem, 3vw, 0.9375rem)",
+                                marginBottom: "clamp(0.75rem, 3vw, 0.9375rem)",
+                                borderRadius: "clamp(0.5rem, 2vw, 0.625rem)",
                                 border: "1px solid #4CAF50",
                                 backgroundColor: "#1E1E1E",
                                 color: "#FFFFFF",
-                                fontSize: "16px",
-                                outline: "none"
+                                fontSize: "clamp(0.875rem, 3vw, 1rem)",
+                                outline: "none",
+                                boxSizing: "border-box"
                             }}
                         />
                     )}
@@ -126,15 +129,16 @@ const Auth = ({ onAuthSuccess }) => {
                         onChange={handleInputChange}
                         required
                         style={{
-                            width: "90%",
-                            padding: "15px",
-                            marginBottom: "15px",
-                            borderRadius: "10px",
+                            width: "100%",
+                            padding: "clamp(0.75rem, 3vw, 0.9375rem)",
+                            marginBottom: "clamp(0.75rem, 3vw, 0.9375rem)",
+                            borderRadius: "clamp(0.5rem, 2vw, 0.625rem)",
                             border: "1px solid #4CAF50",
                             backgroundColor: "#1E1E1E",
                             color: "#FFFFFF",
-                            fontSize: "16px",
-                            outline: "none"
+                            fontSize: "clamp(0.875rem, 3vw, 1rem)",
+                            outline: "none",
+                            boxSizing: "border-box"
                         }}
                     />
                     
@@ -146,15 +150,16 @@ const Auth = ({ onAuthSuccess }) => {
                         onChange={handleInputChange}
                         required
                         style={{
-                            width: "90%",
-                            padding: "15px",
-                            marginBottom: "20px",
-                            borderRadius: "10px",
+                            width: "100%",
+                            padding: "clamp(0.75rem, 3vw, 0.9375rem)",
+                            marginBottom: "clamp(1rem, 4vw, 1.25rem)",
+                            borderRadius: "clamp(0.5rem, 2vw, 0.625rem)",
                             border: "1px solid #4CAF50",
                             backgroundColor: "#1E1E1E",
                             color: "#FFFFFF",
-                            fontSize: "16px",
-                            outline: "none"
+                            fontSize: "clamp(0.875rem, 3vw, 1rem)",
+                            outline: "none",
+                            boxSizing: "border-box"
                         }}
                     />
                     
@@ -162,16 +167,17 @@ const Auth = ({ onAuthSuccess }) => {
                         type="submit"
                         disabled={loading}
                         style={{
-                            width: "98%",
-                            padding: "15px",
+                            width: "100%",
+                            padding: "clamp(0.75rem, 3vw, 0.9375rem)",
                             backgroundColor: "#4CAF50",
                             color: "#FFFFFF",
                             border: "none",
-                            borderRadius: "10px",
-                            fontSize: "18px",
+                            borderRadius: "clamp(0.5rem, 2vw, 0.625rem)",
+                            fontSize: "clamp(1rem, 3vw, 1.125rem)",
                             fontWeight: "bold",
                             cursor: loading ? "not-allowed" : "pointer",
-                            opacity: loading ? 0.7 : 1
+                            opacity: loading ? 0.7 : 1,
+                            boxSizing: "border-box"
                         }}
                     >
                         {loading ? 'Please wait...' : (isLogin ? 'Login' : 'Sign Up')}
@@ -181,7 +187,8 @@ const Auth = ({ onAuthSuccess }) => {
                 <p style={{
                     color: "#FFFFFF",
                     textAlign: "center",
-                    marginTop: "20px"
+                    marginTop: "clamp(1rem, 4vw, 1.25rem)",
+                    fontSize: "clamp(0.875rem, 3vw, 1rem)"
                 }}>
                     {isLogin ? "Don't have an account? " : "Already have an account? "}
                     <span
