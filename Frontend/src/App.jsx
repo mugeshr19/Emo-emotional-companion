@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Speechrecognition from "./components/SpeechRecognition"
-import Auth from "./components/Auth"
+import Speechrecognition from "./components/SpeechRecognition.jsx"
+import Auth from "./components/Auth.jsx"
 import './scrollbar.css'
 
 function App() {
